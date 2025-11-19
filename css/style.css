@@ -1,0 +1,189 @@
+/* ============================
+   GLOBAL DESIGN VARIABLES
+   ============================ */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --nav-bg: #0d6efd;
+  --nav-active: white;
+  --nav-active-bg: #0d6efd;
+  --footer-bg: #f8f9fa;
+}
+
+/* ============================
+     DARK MODE OVERRIDES
+     Applied when body has .dark-mode
+     ============================ */
+body.dark-mode {
+  --bg-color: #1e1e1e;
+  --text-color: #f8f9fa;
+  --card-bg: rgba(34, 34, 34, 0.95);
+  --nav-bg: #343a40;
+  --nav-active: #f8f9fa;
+  --nav-active-bg: #212529;
+  --footer-bg: #111;
+}
+
+/* ============================
+     BODY BASE STYLING
+     Applies to entire site layout
+     ============================ */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Helvetica Neue", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ============================
+     CARD AND CONTAINER STYLING
+     Used for layout blocks and project boxes
+     ============================ */
+.container,
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================
+     CARD HEADER (e.g. Nav Tabs Bar)
+     Used in: index.html > .card-header
+     ============================ */
+.card-header {
+  background-color: var(--nav-bg);
+  color: var(--nav-active);
+  border-radius: 12px 12px 0 0;
+}
+
+/* ============================
+     ACTIVE TAB STYLING
+     Highlights the selected nav-tab
+     ============================ */
+.nav-tabs .nav-link.active {
+  background-color: var(--nav-active-bg);
+  color: var(--nav-active);
+}
+
+/* ============================
+     FOOTER STYLING
+     Applies to bottom of the page
+     ============================ */
+footer {
+  background-color: var(--footer-bg);
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* ============================
+     DARK MODE TOGGLE BUTTON
+     Positioned in top-right corner
+     ============================ */
+#darkModeToggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+  transition: background-color 0.3s;
+}
+
+/* ============================
+     NAV TABS STYLING
+     Applies to About, Projects, Gallery, etc.
+     ============================ */
+.nav-tabs .nav-link {
+  color: #333; /* Base tab text color */
+  background-color: transparent;
+  border: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-right: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  color: #fff;
+  background-color: #4285f4; /* Active tab background */
+  border-bottom: 2px solid #fff;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #0056b3; /* Hover text color */
+}
+
+/* ============================
+     FADE OUT ANIMATION
+     Used for success/failure alerts (e.g. contact form)
+     ============================ */
+.fade-out {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.fade-out.hide {
+  opacity: 0;
+}
+
+/* ============================
+     WIRE COLOR HIGHLIGHT BADGES
+     Used in: Wire Color Guide (#wirecolor)
+     Injected dynamically via getWireColor() JS
+     ============================ */
+.color-Black {
+  background-color: black;
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.color-Red {
+  background-color: red;
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.color-Blue {
+  background-color: blue;
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.color-Brown {
+  background-color: #5c4033; /* Deep brown for better visibility */
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.color-Orange {
+  background-color: orange;
+  color: black;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.color-Yellow {
+  background-color: yellow;
+  color: black;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+/* Ensure inactive tab panes are hidden */
+.tab-pane {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show only active pane */
+.tab-pane.active {
+  display: block;
+  opacity: 1;
+}
+
+

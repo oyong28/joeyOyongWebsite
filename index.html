@@ -147,51 +147,25 @@
               <!-- Projects -->
               <div class="tab-pane" id="projects">
                 <div class="row g-4 px-4">
-                  <!-- Ohm's Law Calculator -->
-                  <div class="col-md-6">
+                  <div class="col-md-6 col-lg-6">
                     <div class="card h-100 shadow-sm">
                       <div class="card-body">
                         <h5 class="card-title">
-                          <i class="fa-solid fa-bolt me-2 text-warning"></i
-                          >Ohm’s Law Calculator
+                          <span class="me-2">⚡</span>Electrician Toolkit
                         </h5>
                         <p class="card-text">
-                          A responsive calculator that solves for voltage,
-                          current, resistance, or power using any two known
-                          values. Built with vanilla JavaScript and styled with
-                          Bootstrap. Runs fully in-browser and hosted on a
-                          Raspberry Pi.
+                          A React-based dashboard of field tools for
+                          electricians, including an Ohm’s Law calculator and
+                          Wire Color Guide, with more tools coming soon. Built
+                          with Vite + React and deployed on my Raspberry Pi web
+                          stack.
                         </p>
                         <a
-                          href="#ohmcalc"
-                          class="btn btn-outline-primary project-link"
-                          data-tab="#ohmcalc"
-                          >Open Tool</a
+                          href="/electrician-toolkit/"
+                          class="btn btn-outline-primary"
                         >
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Wire Color Guide -->
-                  <div class="col-md-6">
-                    <div class="card h-100 shadow-sm">
-                      <div class="card-body">
-                        <h5 class="card-title">
-                          <i class="fa-solid fa-wrench me-2 text-secondary"></i
-                          >Wire Color Guide
-                        </h5>
-                        <p class="card-text">
-                          Quickly identify the correct wire color based on
-                          system voltage and circuit number. This tool
-                          simplifies 3-phase electrical planning for field use.
-                          Fully offline-capable and built with pure JavaScript.
-                        </p>
-                        <a
-                          href="#wirecolor"
-                          class="btn btn-outline-primary project-link"
-                          data-tab="#wirecolor"
-                          >Use Guide</a
-                        >
+                          Open Toolkit
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -237,105 +211,6 @@
                       with HTTPS via Certbot + DuckDNS, and serves real web apps
                       directly from home-grown infrastructure.
                     </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Ohm's Law App -->
-
-              <div class="tab-pane text-center" id="ohmcalc">
-                <h1>Ohm's Law Calculator</h1>
-                <div class="row justify-content-center">
-                  <div class="col-md-6 text-start">
-                    <label for="voltage">Voltage (V):</label>
-                    <input
-                      type="number"
-                      id="voltage"
-                      class="form-control mb-2"
-                      placeholder="Leave blank if solving for Voltage"
-                    />
-
-                    <label for="current">Current (I):</label>
-                    <input
-                      type="number"
-                      id="current"
-                      class="form-control mb-2"
-                      placeholder="Leave blank if solving for Current"
-                    />
-
-                    <label for="resistance">Resistance (Ω):</label>
-                    <input
-                      type="number"
-                      id="resistance"
-                      class="form-control mb-2"
-                      placeholder="Leave blank if solving for Resistance"
-                    />
-
-                    <label for="power">Power (W):</label>
-                    <input
-                      type="number"
-                      id="power"
-                      class="form-control mb-2"
-                      placeholder="Leave blank if unknown"
-                    />
-
-                    <button
-                      onclick="calculateOhmsLaw()"
-                      class="btn btn-primary mt-3 w-100"
-                    >
-                      Calculate
-                    </button>
-                    <div class="mt-3 alert alert-info" id="result"></div>
-                    <div class="text-center mb-3">
-                      <a
-                        href="#projects"
-                        class="btn btn-outline-secondary back-to-projects"
-                        data-tab="#projects"
-                      >
-                        ← Back to Projects
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Electrician's Wire Color Guide App -->
-              <div class="tab-pane text-center" id="wirecolor">
-                <h1>Wire Color Guide</h1>
-                <div class="row justify-content-center">
-                  <div class="col-md-6 text-start">
-                    <label for="voltageSystem">Voltage System:</label>
-                    <select id="voltageSystem" class="form-control mb-2">
-                      <option value="208">120/208V 3Ø 4W</option>
-                      <option value="480">277/480V 3Ø 4W</option>
-                    </select>
-
-                    <label for="circuitNumber">Circuit Number:</label>
-                    <input
-                      type="number"
-                      id="circuitNumber"
-                      class="form-control mb-2"
-                      placeholder="Enter circuit number"
-                    />
-
-                    <button
-                      onclick="getWireColor()"
-                      class="btn btn-primary w-100"
-                    >
-                      Get Wire Color
-                    </button>
-                    <div class="text-center mb-3"></div>
-
-                    <div class="mt-3 alert alert-info" id="wireResult"></div>
-                    <div class="text-center mt-4">
-                      <a
-                        href="#projects"
-                        class="btn btn-outline-secondary back-to-projects"
-                        data-tab="#projects"
-                      >
-                        ← Back to Projects
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -9,53 +9,52 @@ https://joeyoyong.com
 ---
 
 ## 🏠 Architecture
-                     +---------------------------+
-                     |     Local Development     |
-                     |         (WSL)             |
-                     |                           |
-                     |  VS Code + GitHub CLI     |
-                     +-------------+-------------+
-                                   |
-                                   | git push
-                                   v
-                    +--------------+--------------+
-                    |         GitHub Repo         |
-                    |   joeyOyongWebsite          |
-                    +--------------+--------------+
-                                   |
-                                   | git pull (on Pi)
-                                   v
-     +-----------------------------------------------------------+
-     |                   Raspberry Pi Server                     |
-     |         Ubuntu • PiVPN • NGINX • Certbot • DuckDNS        |
-     |                                                           |
-     |   +----------------------+       +---------------------+  |
-     |   |  Static Website     |        | Flask Applications  |  |
-     |   |  /var/www/...       |        | (contact, fishing)  |  |
-     |   +----------+----------+        +----------+----------+  |
-     |              |                           |                |
-     |              | NGINX serves HTML/CSS/JS  | reverse proxy  |
-     |              |                           | to Flask       |
-     |              v                           v                |
-     |   +----------------------+    +------------------------+  |
-     |   |   joeyoyong.com      |    |  contact.joeyoyong.com||  |
-     |   |   (Static Hosting)   |    |  fishing.joeyoyong.com||  |
-     |   +----------------------+    +------------------------+  |
-     |                                                           |
-     +-----------------------------+-----------------------------+
-                                   |
-                                   | HTTPS (Certbot)
-                                   v
-                     +----------------------------+
-                     |         DuckDNS            |
-                     | Dynamic DNS → Pi Server    |
-                     +----------------------------+
-                                   |
-                                   | public traffic
-                                   v
-                     +----------------------------+
-                     |      End Users Browsers     |
-                     +----------------------------+
+
+```mermaid
+flowchart TB
+
+  %% ========= Local Development =========
+  subgraph DEV["Local Development (WSL)"]
+    dev_user["Developer"]
+    dev_tools["VS Code<br/>Git + GitHub CLI"]
+  end
+
+  dev_tools --> github["GitHub Repo<br/>joeyOyongWebsite"]
+
+  %% ========= Public Access =========
+  subgraph PUBLIC["Public Access"]
+    users["End Users<br/>Web Browsers"]
+    duck["DuckDNS<br/>Dynamic DNS"]
+  end
+
+  users --> duck
+
+  %% ========= Raspberry Pi Server =========
+  subgraph PI["Raspberry Pi Server"]
+    pi["Ubuntu • PiVPN • NGINX • Certbot"]
+    nginx["NGINX<br/>Reverse Proxy & Web Server"]
+    static["Static Site<br/>joeyoyong.com<br/>(HTML / CSS / JS)"]
+    contact["Flask App<br/>contact.joeyoyong.com"]
+    fishing["Flask App<br/>fishing.joeyoyong.com"]
+  end
+
+  %% -------- Deployment Flow --------
+  github --> pi
+
+  %% -------- Public Access Flow --------
+  duck -->|"Resolves to Pi IP"| pi
+
+  %% -------- Internal Routing --------
+  pi --> nginx
+  nginx --> static
+  nginx --> contact
+  nginx --> fishing
+```
+
+
+
+
+
 
 
 ---

@@ -13,15 +13,14 @@ https://joeyoyong.com
 ```mermaid
 flowchart TB
 
-  %% ========= Local Development =========
+  %% -------- Local Development --------
   subgraph DEV["Local Development (WSL)"]
-    dev_user["Developer"]
-    dev_tools["VS Code<br/>Git + GitHub CLI"]
+    dev["VS Code<br/>Git + GitHub CLI"]
   end
 
-  dev_tools --> github["GitHub Repo<br/>joeyOyongWebsite"]
+  dev --> github["GitHub Repo<br/>joeyOyongWebsite"]
 
-  %% ========= Public Access =========
+  %% -------- Public Access / DNS --------
   subgraph PUBLIC["Public Access"]
     users["End Users<br/>Web Browsers"]
     duck["DuckDNS<br/>Dynamic DNS"]
@@ -29,7 +28,7 @@ flowchart TB
 
   users --> duck
 
-  %% ========= Raspberry Pi Server =========
+  %% -------- Raspberry Pi Server --------
   subgraph PI["Raspberry Pi Server"]
     pi["Ubuntu • PiVPN • NGINX • Certbot"]
     nginx["NGINX<br/>Reverse Proxy & Web Server"]
@@ -38,24 +37,18 @@ flowchart TB
     fishing["Flask App<br/>fishing.joeyoyong.com"]
   end
 
-  %% -------- Deployment Flow --------
+  %% Deploy flow
   github --> pi
 
-  %% -------- Public Access Flow --------
+  %% Public access flow
   duck -->|"Resolves to Pi IP"| pi
 
-  %% -------- Internal Routing --------
+  %% Internal routing
   pi --> nginx
   nginx --> static
   nginx --> contact
   nginx --> fishing
 ```
-
-
-
-
-
-
 
 ---
 

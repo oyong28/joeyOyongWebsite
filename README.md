@@ -13,14 +13,14 @@ https://joeyoyong.com
 ```mermaid
 flowchart TB
 
-  %% -------- Local Development --------
+  %% ===== Local Development =====
   subgraph DEV["Local Development (WSL)"]
     dev["VS Code<br/>Git + GitHub CLI"]
   end
 
   dev --> github["GitHub Repo<br/>joeyOyongWebsite"]
 
-  %% -------- Public Access / DNS --------
+  %% ===== Public Access =====
   subgraph PUBLIC["Public Access"]
     users["End Users<br/>Web Browsers"]
     duck["DuckDNS<br/>Dynamic DNS"]
@@ -28,27 +28,25 @@ flowchart TB
 
   users --> duck
 
-  %% -------- Raspberry Pi Server --------
+  %% ===== Raspberry Pi =====
   subgraph PI["Raspberry Pi Server"]
     pi["Ubuntu • PiVPN • NGINX • Certbot"]
     nginx["NGINX<br/>Reverse Proxy & Web Server"]
-    static["Static Site<br/>joeyoyong.com<br/>(HTML / CSS / JS)"]
+    static["Static Site<br/>/var/www/joeyoyong"]
     contact["Flask App<br/>contact.joeyoyong.com"]
     fishing["Flask App<br/>fishing.joeyoyong.com"]
   end
 
-  %% Deploy flow
   github --> pi
+  duck -->|"Resolves domain → Pi IP"| pi
 
-  %% Public access flow
-  duck -->|"Resolves to Pi IP"| pi
-
-  %% Internal routing
   pi --> nginx
   nginx --> static
   nginx --> contact
   nginx --> fishing
 ```
+
+
 
 ---
 
@@ -104,6 +102,24 @@ cd /var/www/joeyoyong
 sudo git pull origin main
 
 ---
+
+## 📦 Deployment
+
+```mermaid
+flowchart LR
+
+  A["Write Code<br/>VS Code (WSL)"] --> B["Commit Changes"]
+  B --> C["git push origin main"]
+
+  C -->|"GitHub Actions optional"| D["GitHub Repo"]
+
+  D -->|"SSH into Pi<br/>git pull"| E["Raspberry Pi"]
+
+  E -->|"systemctl restart<br/>nginx or flask services"| F["Updated Live Deployment"]
+
+  F --> G["Public Users Access Updated Site"]
+```
+
 
 ## 📸 Screenshots
 https://github.com/user-attachments/assets/c9a8d462-2299-46bd-ab39-d95928a70280

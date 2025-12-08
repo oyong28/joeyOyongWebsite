@@ -115,10 +115,15 @@ sudo git pull origin main
 
 ## 📸 Screenshots
 https://github.com/user-attachments/assets/c9a8d462-2299-46bd-ab39-d95928a70280
+
 https://github.com/user-attachments/assets/91bca7ba-9262-40d3-b14e-4bc1ae30bbb6
+
 https://github.com/user-attachments/assets/aae2469f-644a-4bfa-9951-995ba78548e5
+
 https://github.com/user-attachments/assets/a478788b-26b3-410d-a81f-cca2f1e298e4
+
 https://github.com/user-attachments/assets/55dd9db0-3a10-40c5-9aaf-8245423d38ad
+
 https://github.com/user-attachments/assets/6b7bbc65-8e91-4da7-8557-0e0e2d5d54e9
 
 

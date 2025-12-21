@@ -2,13 +2,13 @@
 
 This is the source code for my personal website hosted on my Raspberry Pi using NGINX and DuckDNS. The site showcases my web development work, electrician tools, and client projects.
 
-## 🚀 Live Website
+## Live Website
 
 https://joeyoyong.com
 
 ---
 
-## 🏠 Architecture
+## Architecture
 
 ```mermaid
 flowchart TB
@@ -50,7 +50,7 @@ flowchart TB
 
 ---
 
-## 📌 Features
+##  Features
 
 - Fully custom HTML, CSS, and JavaScript
 - Hosted on Raspberry Pi with NGINX
@@ -72,7 +72,7 @@ flowchart TB
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 joeyOyongWebsite/
 ├── index.html
@@ -83,7 +83,7 @@ joeyOyongWebsite/
 
 ---
 
-## 🧱 Development Workflow
+##  Development Workflow
 
 ### Edit locally (WSL)
 
@@ -103,7 +103,7 @@ sudo git pull origin main
 
 ---
 
-## 📦 Deployment Flow
+##  Deployment Flow
 
 ```mermaid
 flowchart LR
@@ -121,7 +121,7 @@ flowchart LR
 ```
 
 
-## 📸 Screenshots
+##  Screenshots
 https://github.com/user-attachments/assets/c9a8d462-2299-46bd-ab39-d95928a70280
 
 https://github.com/user-attachments/assets/91bca7ba-9262-40d3-b14e-4bc1ae30bbb6

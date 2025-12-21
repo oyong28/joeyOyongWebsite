@@ -61,7 +61,7 @@ flowchart TB
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - HTML, CSS, JavaScript
 - Bootstrap 5

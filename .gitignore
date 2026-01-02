@@ -1,0 +1,20 @@
+# ==========================
+# JoeyOyongWebsite .gitignore
+# Purpose:
+# - Keep large or unnecessary files out of GitHub
+# - Prevent pushing local-only copies and design assets
+# ==========================
+
+# Do not push images (site can still serve them from the Pi)
+images/
+
+# Do not push design source folder
+logo design/
+
+# Do not push this backup copy file
+index-tabs-css-12-30-2025.html
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/

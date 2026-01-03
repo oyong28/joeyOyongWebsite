@@ -129,3 +129,13 @@
     }
   });
 })();
+
+// Initial load: if landing directly on a hash, send one virtual page view
+document.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const tabId = hash.replace("#", "");
+  trackPageView("initial_load");
+  trackTabView(tabId, "initial_load");
+});

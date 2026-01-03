@@ -49,7 +49,7 @@
     return activePane ? activePane.id : null;
   }
 
-  // RELIABLE: listen for tab changes from tabs.js
+  // Listen for tab changes from tabs.js
   window.addEventListener("tab:changed", (e) => {
     const tabId = e.detail?.tabId || getActiveTabId();
     const reason = e.detail?.reason || "tab:changed";

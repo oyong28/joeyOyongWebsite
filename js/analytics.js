@@ -51,7 +51,14 @@
 
   // Listen for tab changes from tabs.js
   window.addEventListener("tab:changed", (e) => {
-    const tabId = e.detail?.tabId || getActiveTabId();
+    // tabs.js currently sends: { tab_id, target_hash, reason }
+    // Support both styles just in case you refactor later.
+    const tabId =
+      e.detail?.tab_id ||
+      e.detail?.tabId ||
+      (e.detail?.target_hash ? e.detail.target_hash.replace("#", "") : null) ||
+      getActiveTabId();
+
     const reason = e.detail?.reason || "tab:changed";
 
     trackPageView(reason);

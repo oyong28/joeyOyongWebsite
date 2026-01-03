@@ -49,6 +49,18 @@
     return activePane ? activePane.id : null;
   }
 
+  // Initial load safety net:
+  // If someone lands directly on a hash (ex: /#website-system),
+  // send one virtual page_view + tab_view even if tabs.js doesn't dispatch tab:changed.
+  document.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const tabId = hash.replace("#", "");
+    trackPageView("initial_load");
+    trackTabView(tabId, "initial_load");
+  });
+
   // Listen for tab changes from tabs.js
   window.addEventListener("tab:changed", (e) => {
     // tabs.js currently sends: { tab_id, target_hash, reason }
@@ -117,7 +129,7 @@
       return;
     }
 
-    // D) CTA: "Contact Joey" button
+    // D) CTA: any link that navigates to Contact from the product tab
     const contactCta = e.target.closest(
       'a[href="#contact"][data-tab="#contact"]'
     );
@@ -129,13 +141,3 @@
     }
   });
 })();
-
-// Initial load: if landing directly on a hash, send one virtual page view
-document.addEventListener("DOMContentLoaded", () => {
-  const hash = window.location.hash;
-  if (!hash) return;
-
-  const tabId = hash.replace("#", "");
-  trackPageView("initial_load");
-  trackTabView(tabId, "initial_load");
-});

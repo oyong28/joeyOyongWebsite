@@ -12,11 +12,12 @@
   - .tab-pane elements exist in DOM.
   - Optional: .nav-link elements for active state styling.
 
-  Updates in this version (minimal, focused):
-  - Supports opening a pane via URL hash on page load (ex: /#website-system).
-  - Updates the URL hash when a tab is clicked (shareable/bookmarkable).
-  - Supports browser back/forward navigation (popstate).
-  - Dispatches a custom event "tab:changed" so analytics.js can track tab views reliably.
+  Updates in this version:
+  - Adds support for opening hidden panes via URL hash on page load.
+    Example: https://joeyoyong.com/#website-system
+  - Updates the URL hash when a tab is clicked, so the page is shareable/bookmarkable.
+  -  Dispatches a custom event "tab:changed" whenever the active pane changes.
+    This lets analytics.js track tab views reliably.
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,16 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!triggers.length) return;
 
   /**
+   * Dispatch a custom event so other scripts (like analytics.js) can react.
+   * We keep the payload simple and consistent.
+   */
+  function emitTabChanged(targetHash, reason) {
+    const tabId = (targetHash || "").replace("#", "") || null;
+
+    window.dispatchEvent(
+      new CustomEvent("tab:changed", {
+        detail: {
+          tab_id: tabId,
+          target_hash: targetHash || null,
+          reason: reason || "unknown",
+        },
+      })
+    );
+  }
+
+  /**
    * Activates a tab-pane by id string like "#bio" or "#website-system".
    * This works for visible nav tabs and invisible panes alike.
-   *
-   * Also dispatches a custom event:
-   * window.dispatchEvent(new CustomEvent("tab:changed", { detail: {...} }))
-   * so other scripts (analytics.js) can track tab views.
    */
   function activatePane(targetId, reason) {
-    if (!targetId || !targetId.startsWith("#")) return;
-
     const targetPane = document.querySelector(targetId);
     if (!targetPane || !targetPane.classList.contains("tab-pane")) return;
 
@@ -58,40 +71,20 @@ document.addEventListener("DOMContentLoaded", () => {
     targetPane.classList.add("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Emit a reliable signal for analytics (and anything else)
-    // detail.tab_id will be "website-system" for "#website-system"
-    window.dispatchEvent(
-      new CustomEvent("tab:changed", {
-        detail: {
-          tab_id: targetId.replace("#", ""),
-          target_hash: targetId,
-          reason: reason || "unknown",
-        },
-      })
-    );
+    // Tell the rest of the site (analytics.js, etc.) that a tab changed
+    emitTabChanged(targetId, reason || "activatePane");
   }
 
-  // ---  Open pane by URL hash on first load (supports invisible tabs) ---
-  // Example: https://joeyoyong.com/#website-system
+  // --- Open pane by URL hash on first load (supports invisible tabs) ---
+  // If user visits https://joeyoyong.com/#website-system, this will open that pane.
   if (window.location.hash) {
     activatePane(window.location.hash, "initial_load");
   } else {
-    // If no hash, still emit for the default active pane so analytics can record it
-    const activePane = document.querySelector(".tab-pane.active");
-    if (activePane && activePane.id) {
-      window.dispatchEvent(
-        new CustomEvent("tab:changed", {
-          detail: {
-            tab_id: activePane.id,
-            target_hash: `#${activePane.id}`,
-            reason: "initial_load_default",
-          },
-        })
-      );
-    }
+    // Optional: still emit the initial active tab (bio)
+    emitTabChanged("#bio", "initial_load");
   }
 
-  // Existing click behavior, upgraded to also update URL hash + support analytics hook
+  // Existing click behavior, upgraded to also update URL hash
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", function (e) {
       e.preventDefault();
@@ -99,8 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetId = this.getAttribute("data-tab"); // e.g. "#fishing"
       if (!targetId || !targetId.startsWith("#")) return;
 
-      // ---  Update the URL hash for shareable links/bookmarks ---
-      // This also makes browser back/forward work.
+      // Update the URL hash for shareable links/bookmarks
+      // This also allows browser back/forward to work more predictably.
       history.pushState(null, "", targetId);
 
       // Activate the pane (works for both visible and invisible panes)
@@ -112,6 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("popstate", () => {
     if (window.location.hash) {
       activatePane(window.location.hash, "popstate");
+    }
+  });
+
+  // --- Support manual hash changes (typed in URL bar, or external scripts) ---
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash) {
+      activatePane(window.location.hash, "hashchange");
     }
   });
 });

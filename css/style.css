@@ -12,20 +12,6 @@
 }
 
 /* ============================
-     DARK MODE OVERRIDES
-     Applied when body has .dark-mode
-     ============================ */
-body.dark-mode {
-  --bg-color: #1e1e1e;
-  --text-color: #f8f9fa;
-  --card-bg: rgba(34, 34, 34, 0.95);
-  --nav-bg: #343a40;
-  --nav-active: #f8f9fa;
-  --nav-active-bg: #212529;
-  --footer-bg: #111;
-}
-
-/* ============================
      BODY BASE STYLING
      Applies to entire site layout
      ============================ */
@@ -75,18 +61,6 @@ footer {
   padding: 1rem;
   font-size: 0.9rem;
   color: var(--text-color);
-}
-
-/* ============================
-     DARK MODE TOGGLE BUTTON
-     Positioned in top-right corner
-     ============================ */
-#darkModeToggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 999;
-  transition: background-color 0.3s;
 }
 
 /* ============================

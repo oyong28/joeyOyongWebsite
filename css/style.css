@@ -169,3 +169,115 @@ footer {
 .nav-tabs .nav-link:hover {
   color: #e6e6e6 !important;
 }
+/* ============================
+   ARTIST WEBSITE SYSTEM PAGE
+   Conversion-focused tweaks
+   Scoped to standalone page layout
+   ============================ */
+
+/* Make the standalone page read cleaner and more premium */
+#top .container {
+  max-width: 1100px;
+}
+
+/* Reduce “everything is a card” feeling by softening nested card shadows */
+#top .card .card {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Hero typography: stronger hierarchy, less “school report” */
+#top h1 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+#top .text-center p {
+  line-height: 1.6;
+}
+
+/* Keep the hero from feeling airy and indecisive */
+#top .text-center.mb-4,
+#top .text-center.mb-5 {
+  margin-bottom: 2rem !important;
+}
+
+/* Price card: make it feel like the decision box */
+#top .card.shadow-sm.mx-auto {
+  border: 1px solid rgba(13, 110, 253, 0.15);
+}
+
+#top .card.shadow-sm.mx-auto .h2 {
+  letter-spacing: -0.02em;
+}
+
+/* Primary CTA: make it look like a purchase action, not a generic button */
+#top a.btn.btn-primary.btn-lg,
+#top a.btn.btn-primary {
+  font-weight: 700;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(13, 110, 253, 0.18);
+  transform: translateY(0);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+#top a.btn.btn-primary.btn-lg:hover,
+#top a.btn.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(13, 110, 253, 0.24);
+}
+
+/* Secondary CTA link (Ask a quick question) should not compete */
+#top .contact-cta,
+#top a.contact-cta {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+}
+
+#top .contact-cta:hover,
+#top a.contact-cta:hover {
+  opacity: 1;
+}
+
+/* Lists: increase readability */
+#top ul {
+  margin-bottom: 0;
+  padding-left: 1.15rem;
+}
+
+#top li {
+  margin: 0.35rem 0;
+  line-height: 1.5;
+}
+
+/* Screenshot thumbnails: make them feel clickable and polished */
+#top .screenshot-thumb {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#top .screenshot-thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Reduce visual clutter between sections */
+#top hr.my-4 {
+  opacity: 0.15;
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  #top .px-3.py-4 {
+    padding: 1.25rem !important;
+  }
+
+  #top a.btn.btn-primary.btn-lg {
+    width: 100%;
+  }
+}
+/* ============================
+   END OF css/style.css
+   ============================ */

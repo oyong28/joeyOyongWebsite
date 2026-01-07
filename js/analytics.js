@@ -163,8 +163,5 @@
       });
       return;
     }
-
-    // D) Video click: clicking inside an iframe won't reliably bubble.
-    // If you want real YouTube engagement tracking, we can add the YouTube IFrame API later.
   });
 })();

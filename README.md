@@ -73,14 +73,14 @@ flowchart TB
 ---
 
 ##  Project Structure
-
+```
 joeyOyongWebsite/
 ├── index.html
 ├── css/
 ├── images/
 ├── js/
 └── README.md
-
+```
 ---
 
 ##  Development Workflow

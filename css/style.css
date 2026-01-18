@@ -19,7 +19,9 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Helvetica Neue", sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 /* ============================
@@ -218,7 +220,10 @@ footer {
   border-radius: 12px;
   box-shadow: 0 10px 24px rgba(13, 110, 253, 0.18);
   transform: translateY(0);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
 }
 
 #top a.btn.btn-primary.btn-lg:hover,
@@ -255,7 +260,9 @@ footer {
 /* Screenshot thumbnails: make them feel clickable and polished */
 #top .screenshot-thumb {
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 #top .screenshot-thumb:hover {
